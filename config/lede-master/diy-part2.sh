@@ -19,7 +19,7 @@ sed -i "s|DISTRIB_REVISION='.*'|DISTRIB_REVISION='R$(date +%Y.%m.%d)'|g" package
 echo "DISTRIB_SOURCECODE='lede'" >>package/base-files/files/etc/openwrt_release
 
 # Modify default IP（FROM 192.168.1.1 CHANGE TO 192.168.31.4）
-# sed -i 's/192.168.1.1/192.168.31.4/g' package/base-files/files/bin/config_generate
+sed -i 's/10.10.10.1/10.10.10.11/g' package/base-files/files/bin/config_generate
 
 # Replace the default software source
 # sed -i 's#openwrt.proxy.ustclug.org#mirrors.bfsu.edu.cn\\/openwrt#' package/lean/default-settings/files/zzz-default-settings
@@ -30,6 +30,15 @@ echo "DISTRIB_SOURCECODE='lede'" >>package/base-files/files/etc/openwrt_release
 #
 # Add luci-app-amlogic
 svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
+svn co https://github.com/coolsnowwolf/packages packages
+svn co https://github.com/coolsnowwolf/luci luci
+svn co https://github.com/coolsnowwolf/routing routing
+svn co https://git.openwrt.org/feed/telephony.git telephony
+svn co https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
+svn co https://github.com/kenzok8/small small
+svn co https://github.com/kenzok8/openwrt-packages kenzo
+svn co https://github.com/linkease/istore;main istore
+svn co https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git infinityfreedom
 
 # Fix runc version error
 # rm -rf ./feeds/packages/utils/runc/Makefile
